@@ -2,6 +2,7 @@ from PyQt5.QtWidgets import (QPushButton, QFormLayout, QWidget, QLineEdit, QLabe
                              QVBoxLayout, QMessageBox, QApplication)
 from PyQt5.QtGui import QFont, QIcon
 from PyQt5.QtCore import Qt
+from downloader import Downloader
 import sys
 
 class Window(QWidget):
@@ -53,7 +54,7 @@ class Window(QWidget):
         
         self.temp = self.le.text()
         self.le.setText('Searching...')
-        self.th = Getter(self.temp)
+        self.th = Downloader(self.temp)
         self.th.finished[int].connect(self.onFinished)
         self.th.error.connect(self.onError)
         self.th.start()
